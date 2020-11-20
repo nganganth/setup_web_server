@@ -3,14 +3,14 @@
 This manual provide information about how to setup a CentOS server to work as web server.
 
 
-| Category      | Specified     |
-| ------------- | ------------- |
-| OS | CentOS 7       |
-| DB | PostgreSQL 11  |
-| Web server | nginx 1.x      |
-| Serverlet container | Tomcat 9.x  |
-| Backend | Java  |
-| Frontend | Vue.js  |
+| Category      	| Specified     |
+| ---------------------	| ------------- |
+| OS 			| CentOS 7      |
+| DB 			| PostgreSQL 11 |
+| Web server 		| nginx 1.x     |
+| Serverlet container 	| Tomcat 9.x  	|		
+| Backend 		| Java  	|
+| Frontend 		| Vue.js  	|
 
 
 ### Prepare server to work 
@@ -194,9 +194,34 @@ sudo systemctl daemon-reload
 sudo systemctl restart tomcat
 ```
 
-To confirm the installation, please access:
+To confirm the installation, try to access:
 * local: localhost:8080
 * network: 192.168.204.45:8080
+
+Using Tomcat web browser
+```shell
+# create Tomcat user
+cd /opt/apache-tomcat-9.0.34/conf	
+vi tomcat-users.xml	
+>><tomcat-users xmlns="http://tomcat.apache.org/xml"	
+>>              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	
+>>              xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"	
+>>              version="1.0">	
+>><user username="admin" password="admin" roles="manager-gui,manager-script"/>	
+>></tomcat-users>	
+```
+Access `'http://192.168.204.45:8080/manager/html` using `admin/admin` account
+
+**Notes**: If *403 Access Denied* error occurs when accessing `/manager/html`
+
+open `/opt/TOMCAT_HOME/webapps/manager/META-INF/context.xml` and comment out `<Value>` tag's content
+```shell
+<Context antiResourceLocking="false" privileged="true" >
+<!--
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+-->
+```
 
 ### Configure PATH
 
@@ -292,5 +317,24 @@ sudo vi /etc/nginx/conf.d/default.conf
 sudo systemctl restart nginx
 
 ```
+ ### Locate resources
+ 
+* create `opt/manager-api` as back-end resources
+* create `opt/manager-front` as front-end resources 
+* give a proper permission for both folders 
+```shell
+sudo chmod -R 757 /opt/manager-api
+sudo chmod -R 757 /opt/manager-front
+```
 
+* create a temporary folder for logging 
+```shell
+sudo mkdir -p /opt/eqsurv/manager
+sudo chmod -R 757 /opt/eqsurv/manager
+```
 
+* open `/opt/manager-api/src/main/resources/application.properties` and `/opt/manager-api/src/main/resources/application-production.properties` and update the necessary configurations
+
+### Deploy resources
+ To deploy resources, run `build.sh` file
+ 
