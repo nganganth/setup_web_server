@@ -11,8 +11,10 @@ This manual provide information about how to setup a CentOS server to work as we
 | Serverlet container 	| Tomcat 9.x  	|		
 | Backend 		| Java  	|
 | Frontend 		| Vue.js  	|
+| Authorization Server  | Auth0 	|
 
 
+Authorization Server
 ### Prepare server to work 
 
 On local Window:
