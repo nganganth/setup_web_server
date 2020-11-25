@@ -14,7 +14,6 @@ This manual provide information about how to setup a CentOS server to work as we
 | Authorization Server  | Auth0 	|
 
 
-Authorization Server
 ### Prepare server to work 
 
 On local Window:
