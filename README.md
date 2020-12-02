@@ -13,6 +13,10 @@ This manual provide information about how to setup a CentOS server to work as we
 | Frontend 		| Vue.js  	|
 | Authorization Server  | Auth0 	|
 
+* nginx: is an open-source web server that, since its initial success as a web server, is now also used as a reverse proxy, HTTP cache, 
+and load balancer. Nginx is built to offer low memory usage and high concurrency. Rather than creating new processes for each web request,
+Nginx uses an asynchronous, event-driven approach where requests are handled in a single thread.
+While Apache is the most popular overall option, Nginx is actually the most popular web server among high-traffic websites.   
 
 ### Prepare server to work 
 
