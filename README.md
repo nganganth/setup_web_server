@@ -90,11 +90,12 @@ On local machine, install [pgadmin4](https://www.pgadmin.org/download/pgadmin-4-
 * Execute `.sql` files for creating tables and adding the initialization data
 * In case, DB already exists and dump file is already created, please import `.dump` file to restore DB
 * Issues:
-- Create a new server, and set `Connection`'s address as VM's address, Error saving properties occurs: `Unable to connect to server. Could not translate host name to address`
-=> Set `Connection`'s address as localhost: 127.0.0.1
-=> In SSH Tunnel tab, enable `Use SSH tunneling` and inputs the necessary information of VM.
-- Try to import `.dump` file for restoring DB, nothing happens after `restore job created`
-=> Pgadmin version issue
+
+1. Create a new server, and set `Connection`'s address as VM's address, Error saving properties occurs: `Unable to connect to server. Could not translate host name to address`
+	- Set `Connection`'s address as localhost: 127.0.0.1
+	- In SSH Tunnel tab, enable `Use SSH tunneling` and inputs the necessary information of VM.
+2. Try to import `.dump` file for restoring DB, nothing happens after `restore job created`
+	- Pgadmin version issue
 
 ### Install JDK 11
 
