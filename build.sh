@@ -9,4 +9,4 @@ cd /opt/manager-api
 mvn clean package
 echo "Api is already created!"
 wait
-sudo cp /opt/manager-api/target/eqsurv-manager.war /opt/TOMCAT_HOME/webapps/
+sudo cp /opt/manager-api/target/manager.war /opt/TOMCAT_HOME/webapps/
